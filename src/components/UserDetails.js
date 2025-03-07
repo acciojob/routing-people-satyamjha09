@@ -18,6 +18,7 @@ const UserDetails = () => {
 
   if (loading) return <div>Loading...</div>;
 
+
   return (
     <div>
       <p>Name: {user.name}</p>
