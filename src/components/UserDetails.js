@@ -19,9 +19,10 @@ const UserDetails = () => {
   }, [id]);
 
   if (loading) {
-    console.log("Loading is true"); // Debugging log
-    return <div>Loading...</div>; // Make sure it's inside a div
+    return <div data-testid="loading">Loading...</div>;
   }
+  
+  
 
   return (
     <div>
