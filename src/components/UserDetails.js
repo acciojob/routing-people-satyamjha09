@@ -20,7 +20,7 @@ const UserDetails = () => {
 
   return (
     <div>
-      <h1>Name: {user.name}</h1> {/* Matches Cypress test expectation */}
+      <p>Name: {user.name}</p>  {/* Changed from <h1> to <p> */}
       <p>Email: {user.email}</p>
       <p>Phone: {user.phone}</p>
       <p>Website: {user.website}</p>
