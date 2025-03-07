@@ -15,15 +15,13 @@ const UserDetails = () => {
         setUser(response.data);
       })
       .catch(() => console.error("Error fetching user data"))
-      .finally(() => setLoading(false)); // Set loading to false when request completes
+      .finally(() => setLoading(false)); 
   }, [id]);
 
-  if (loading) {
-    return <div data-testid="loading">Loading...</div>;
-  }
+  if (loading) return <div>Loading...</div>;
   
-  
-
+  if (!user) return <div>Failed to load user data.</div>;
+    
   return (
     <div>
       <p>Name: {user.name}</p>
