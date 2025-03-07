@@ -20,12 +20,13 @@ const UserDetails = () => {
       });
   }, [id]);
 
-  if (loading) return <h2>Loading...</h2>;
+  if (loading) return <div>Loading...</div>; 
+
   if (!user) return <h2>User not found</h2>;
 
   return (
     <div>
-      <h1>{user.name}</h1>
+      <h1>Name: {user.name}</h1>
       <p>Email: {user.email}</p>
       <p>Phone: {user.phone}</p>
       <p>Website: {user.website}</p>
