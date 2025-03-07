@@ -20,7 +20,8 @@ const UserDetails = () => {
 
   return (
     <div>
-      <p>Name: {user.name}</p>  {/* Changed from <h1> to <p> */}
+      <p>Name: {user.name}</p>
+      <p>Username: {user.username}</p>  {/* Ensure this is included */}
       <p>Email: {user.email}</p>
       <p>Phone: {user.phone}</p>
       <p>Website: {user.website}</p>
