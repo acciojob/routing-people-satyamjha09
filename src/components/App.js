@@ -10,7 +10,7 @@ const App = () => {
     <Router>
       <Routes>
         <Route path="/" element={<UserList />} />
-        <Route path="/users/:id" element={<UserDetails />} /> {/* Match Cypress expected path */}
+        <Route path="/user/:userId" element={<UserDetails />} />
       </Routes>
     </Router>
   )
