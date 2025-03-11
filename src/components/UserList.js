@@ -1,26 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-const UserList = () => {
+function UserList() {
   const [users, setUsers] = useState([]);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch('https://jsonplaceholder.typicode.com/users')
       .then(response => response.json())
-      .then(data => {
-        setUsers(data);
-        setLoading(false);
-      })
-      .catch(error => {
-        console.error('Error fetching users:', error);
-        setLoading(false);
-      });
+      .then(data => setUsers(data));
   }, []);
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
 
   return (
     <div>
@@ -34,6 +22,6 @@ const UserList = () => {
       </ul>
     </div>
   );
-};
+}
 
 export default UserList;
