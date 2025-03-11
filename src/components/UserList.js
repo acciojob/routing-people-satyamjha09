@@ -1,21 +1,14 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import axios from "axios";
+import React , { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
-const UserList = () => {
+function UserList() {
   const [users, setUsers] = useState([]);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get("https://jsonplaceholder.typicode.com/users")
-      .then((response) => {
-        setUsers(response.data);
-        setLoading(false);
-      })
-      .catch(() => setLoading(false));
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then((response) => response.json())
+      .then((data) => setUsers(data));
   }, []);
-
-  if (loading) return <div>Loading...</div>;
 
   return (
     <div>
@@ -23,12 +16,12 @@ const UserList = () => {
       <ul>
         {users.map((user) => (
           <li key={user.id}>
-            <Link to={`/users/${user.id}`}>{user.name}</Link> {/* Cypress expects `/users/:id` */}
+            <Link to={`/users/${user.id}`}>{user.name}</Link>
           </li>
         ))}
       </ul>
     </div>
   );
-};
+}
 
 export default UserList;

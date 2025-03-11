@@ -1,36 +1,41 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import axios from "axios";
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
-const UserDetails = () => {
-  const { id } = useParams();
+function UserDetails() {
+  const { userId } = useParams();
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    setLoading(true); // Force loading state before fetching data
+    const fetchUser = async () => {
+      try {
+        const response = await fetch(
+          `https://jsonplaceholder.typicode.com/users/${userId}`
+        );
+        const data = await response.json();
+        setUser(data);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchUser();
+  }, [userId]);
 
-    axios.get(`https://jsonplaceholder.typicode.com/users/${id}`)
-      .then((response) => {
-        setUser(response.data);
-      })
-      .catch(() => console.error("Error fetching user data"))
-      .finally(() => setLoading(false)); 
-  }, [id]);
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
-  if (loading) return <div>Loading...</div>;
-  
-  if (!user) return <div>Failed to load user data.</div>;
-    
   return (
     <div>
+      <h2>User Details</h2>
       <p>Name: {user.name}</p>
-      <p>Username: {user.username}</p>
       <p>Email: {user.email}</p>
       <p>Phone: {user.phone}</p>
       <p>Website: {user.website}</p>
     </div>
   );
-};
+}
 
 export default UserDetails;
