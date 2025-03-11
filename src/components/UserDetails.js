@@ -10,6 +10,7 @@ const UserDetails = () => {
     fetch(`https://jsonplaceholder.typicode.com/users/${userId}`)
       .then(response => response.json())
       .then(data => {
+        console.log('User Data:', data); // Log the API response
         setUser(data);
         setLoading(false);
       })
@@ -20,7 +21,8 @@ const UserDetails = () => {
   }, [userId]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    console.log('Loading state: true'); // Verify this is logged
+    return <div>Loading...</div>; // Ensure this matches the test expectation
   }
 
   if (!user) {
@@ -30,7 +32,7 @@ const UserDetails = () => {
   return (
     <div>
       <h1>User Details</h1>
-      <p>Username: {user.username}</p>
+      <p>Name: {user.name}</p> {/* Ensure this matches the test expectation */}
       <p>Email: {user.email}</p>
       <p>Phone: {user.phone}</p>
       <p>Website: {user.website}</p>
